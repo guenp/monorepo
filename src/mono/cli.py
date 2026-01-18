@@ -4,18 +4,22 @@ from __future__ import annotations
 
 import typer
 
-HELP_TEXT = """A minimal Python CLI template.
+from mono.core import say_hello
+from mono.one import say_hi
+from mono.two import say_bye
+
+HELP_TEXT = """A minimal Python CLI monorepo template.
 
 \b
 Examples:
-  $ mono
+  $ mono hello World
   Hello, World!
 
-  $ mono Alice
-  Hello, Alice!
+  $ mono hi Alice
+  Hi, Alice!
 
-  $ mono "Python Developer"
-  Hello, Python Developer!
+  $ mono bye Bob
+  Goodbye, Bob!
 """
 
 app = typer.Typer(
@@ -24,12 +28,31 @@ app = typer.Typer(
 )
 
 
-@app.callback(invoke_without_command=True)
+@app.command()
 def hello(
     name: str = typer.Argument("World", help="Name to greet"),
 ) -> None:
-    """Say hello to someone."""
-    typer.echo(f"Hello, {name}!")
+    """Say hello to someone (using mono.core)."""
+    message = say_hello(name)
+    typer.echo(message)
+
+
+@app.command()
+def hi(
+    name: str = typer.Argument("Friend", help="Name to greet"),
+) -> None:
+    """Say hi to someone (using mono.one)."""
+    message = say_hi(name)
+    typer.echo(message)
+
+
+@app.command()
+def bye(
+    name: str = typer.Argument("Friend", help="Name to say goodbye to"),
+) -> None:
+    """Say goodbye to someone (using mono.two)."""
+    message = say_bye(name)
+    typer.echo(message)
 
 
 def main() -> None:
