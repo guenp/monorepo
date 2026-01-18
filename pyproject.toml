@@ -60,7 +60,7 @@ warn_return_any = true
 warn_unused_configs = true
 
 [dependency-groups]
-dev = ["mypy>=1.14", "pre-commit>=4", "ruff>=0.9", "pytest>=8", "pytest-cov>=4"]
+dev = ["mypy>=1.14", "pre-commit>=4", "ruff>=0.9", "pytest>=8", "pytest-cov>=4", "ty"]
 docs = ["zensical", "markdown-gfm-admonition"]
 
 [tool.pytest.ini_options]
