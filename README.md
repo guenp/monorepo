@@ -313,4 +313,4 @@ Built with modern Python tooling:
 - [Ruff](https://docs.astral.sh/ruff/) for linting and formatting
 - [uv](https://github.com/astral-sh/uv) for fast dependency management
 
-This template is based on https://github.com/basnijholt/trueloc by @basnijholt.
+This template is inspired by https://github.com/basnijholt/trueloc.
