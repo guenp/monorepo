@@ -36,6 +36,30 @@ rm -rf .git && git init
 
 ### 2. Customize the Package
 
+**Choose your structure:**
+
+**Option A: Simple single package** (recommended for most projects)
+
+Remove the example subpackages:
+```bash
+rm -rf mono-core mono-one mono-two
+```
+
+Then update `pyproject.toml` to remove the subpackage dependencies:
+```toml
+dependencies = [
+    "typer>=0.15",
+    # Remove: mono-core, mono-one, mono-two
+]
+# Remove the [tool.uv.sources] section
+```
+
+**Option B: Keep the monorepo structure**
+
+Keep the subpackages and customize them for your needs.
+
+**Then, for either option:**
+
 Replace all occurrences of `mono` with your package name:
 
 ```bash
@@ -50,7 +74,10 @@ Rename the package directory:
 
 ```bash
 mv src/mono src/yourpackage
-mv tests/test_mono.py tests/test_yourpackage.py
+# If keeping subpackages, rename those too:
+# mv mono-core yourpackage-core
+# mv mono-one yourpackage-one
+# etc.
 ```
 
 Update `pyproject.toml`:
@@ -92,21 +119,26 @@ Install the example CLI:
 
 ```bash
 uv tool install mono
-# or: uvx mono World
+# or: uvx mono hello World
 ```
 
 Try it out:
 
 ```bash
-mono
+mono hello
 # Output: Hello, World!
 
-mono Alice
-# Output: Hello, Alice!
+mono hi Alice
+# Output: Hi, Alice!
+
+mono bye Bob
+# Output: Goodbye, Bob!
 
 mono --help
 # See available options
 ```
+
+This example demonstrates the monorepo structure with three subpackages (`mono-core`, `mono-one`, `mono-two`). The CLI imports from these subpackages to show how they work together.
 
 ## Development Workflow
 
@@ -175,6 +207,10 @@ Update the docs in the `docs/` directory and customize `zensical.toml`.
 
 ## Project Structure
 
+This template supports two project structures:
+
+### Simple Single Package (Recommended for Most Projects)
+
 ```
 .
 ├── .github/
@@ -195,6 +231,51 @@ Update the docs in the `docs/` directory and customize `zensical.toml`.
 ├── zensical.toml         # Documentation configuration
 └── CLAUDE.md             # Development notes for AI assistants
 ```
+
+### Monorepo with Multiple Subpackages (Optional)
+
+If you need to split your project into multiple independently installable packages:
+
+```
+.
+├── .github/
+├── docs/
+├── yourpackage-core/          # Separate subpackage
+│   ├── pyproject.toml
+│   ├── README.md
+│   └── src/
+│       └── yourpackage_core/
+│           ├── __init__.py
+│           └── core.py
+├── yourpackage-one/           # Another subpackage
+│   ├── pyproject.toml
+│   ├── README.md
+│   └── src/
+│       └── yourpackage_one/
+│           ├── __init__.py
+│           └── feature.py
+├── src/
+│   └── yourpackage/           # Main CLI package
+│       ├── __init__.py
+│       └── cli.py
+├── tests/
+├── pyproject.toml             # Main project config
+└── zensical.toml
+```
+
+**When to use the monorepo structure:**
+- You need to publish multiple packages separately to PyPI
+- Different parts of your project have different dependencies
+- You want to version subpackages independently
+- You're building a plugin ecosystem or modular toolkit
+
+**For the monorepo structure:**
+1. Each subpackage has its own `pyproject.toml` with independent configuration
+2. Package names use underscores for imports (e.g., `yourpackage_core`)
+3. The main `pyproject.toml` references subpackages using `[tool.uv.sources]`
+4. Each subpackage can be installed and published independently
+
+See the example structure in this repository (`mono-core`, `mono-one`, `mono-two`) for reference.
 
 ## What's Included
 
