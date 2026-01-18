@@ -1,11 +1,11 @@
-<img src="logo.svg" align="right" width="200" />
-
 # mono - Python CLI Template
 
 [![PyPI](https://img.shields.io/pypi/v/mono)](https://pypi.org/project/mono/)
 [![Python](https://img.shields.io/pypi/pyversions/mono)](https://pypi.org/project/mono/)
 [![License](https://img.shields.io/github/license/guenp/mono)](LICENSE)
 [![CI](https://img.shields.io/github/actions/workflow/status/guenp/mono/pytest.yml?label=tests)](https://github.com/guenp/mono/actions/workflows/pytest.yml)
+
+<img src="logo.svg" align="right" width="200" />
 
 A minimal, production-ready template for Python CLI tools. Get started building your CLI in minutes with modern tooling, comprehensive testing, and CI/CD out of the box.
 
