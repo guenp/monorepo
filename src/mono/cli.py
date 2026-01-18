@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import typer
 
-from mono.core import say_hello
-from mono.one import say_hi
-from mono.two import say_bye
+from mono_core import say_hello
+from mono_one import say_hi
+from mono_two import say_bye
 
 HELP_TEXT = """A minimal Python CLI monorepo template.
 
@@ -32,7 +32,7 @@ app = typer.Typer(
 def hello(
     name: str = typer.Argument("World", help="Name to greet"),
 ) -> None:
-    """Say hello to someone (using mono.core)."""
+    """Say hello to someone (using mono_core)."""
     message = say_hello(name)
     typer.echo(message)
 
@@ -41,7 +41,7 @@ def hello(
 def hi(
     name: str = typer.Argument("Friend", help="Name to greet"),
 ) -> None:
-    """Say hi to someone (using mono.one)."""
+    """Say hi to someone (using mono_one)."""
     message = say_hi(name)
     typer.echo(message)
 
@@ -50,7 +50,7 @@ def hi(
 def bye(
     name: str = typer.Argument("Friend", help="Name to say goodbye to"),
 ) -> None:
-    """Say goodbye to someone (using mono.two)."""
+    """Say goodbye to someone (using mono_two)."""
     message = say_bye(name)
     typer.echo(message)
 

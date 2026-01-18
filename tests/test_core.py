@@ -1,8 +1,8 @@
-"""Tests for mono.core subpackage."""
+"""Tests for mono_core subpackage."""
 
 from __future__ import annotations
 
-from mono.core import say_hello
+from mono_core import say_hello
 
 
 def test_say_hello_default() -> None:
@@ -18,8 +18,8 @@ def test_say_hello_with_name() -> None:
 
 
 def test_import_from_core() -> None:
-    """Test that say_hello can be imported from mono.core."""
-    from mono.core import say_hello as imported_func
+    """Test that say_hello can be imported from mono_core."""
+    from mono_core import say_hello as imported_func
 
     assert callable(imported_func)
     assert imported_func("Test") == "Hello, Test!"

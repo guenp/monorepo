@@ -2,6 +2,6 @@
 
 from __future__ import annotations
 
-from mono.one.greetings import say_hi
+from mono_one.greetings import say_hi
 
 __all__ = ["say_hi"]

@@ -1,0 +1,42 @@
+[project]
+name = "mono-core"
+dynamic = ["version"]
+description = "Core utilities for mono"
+readme = "README.md"
+authors = [{ name = "Guen Prawiroatmodjo", email = "guen.p@ionq.co" }]
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+root = ".."
+fallback-version = "0.0.0"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/mono_core/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mono_core"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D",       # pydocstyle
+    "ANN",     # annotations
+    "COM812",  # trailing comma
+    "ISC001",  # implicit string concat
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true

@@ -5,7 +5,17 @@ description = "A minimal Python CLI template"
 readme = "README.md"
 authors = [{ name = "Guen Prawiroatmodjo", email = "guen.p@ionq.co" }]
 requires-python = ">=3.12"
-dependencies = ["typer>=0.15"]
+dependencies = [
+    "typer>=0.15",
+    "mono-core",
+    "mono-one",
+    "mono-two",
+]
+
+[tool.uv.sources]
+mono-core = { path = "mono-core", editable = true }
+mono-one = { path = "mono-one", editable = true }
+mono-two = { path = "mono-two", editable = true }
 
 [project.scripts]
 mono = "mono:app"
@@ -60,15 +70,22 @@ warn_return_any = true
 warn_unused_configs = true
 
 [dependency-groups]
-dev = ["mypy>=1.14", "pre-commit>=4", "ruff>=0.9", "pytest>=8", "pytest-cov>=4", "ty"]
+dev = [
+    "mypy>=1.14",
+    "pre-commit>=4",
+    "ruff>=0.9",
+    "pytest>=8",
+    "pytest-cov>=4",
+    "ty",
+]
 docs = ["zensical", "markdown-gfm-admonition"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=mono --cov-report=term-missing --cov-report=html"
+addopts = "--cov=mono --cov=mono_core --cov=mono_one --cov=mono_two --cov-report=term-missing --cov-report=html"
 
 [tool.coverage.run]
-source = ["src/mono"]
+source = ["src/mono", "mono-core/src/mono_core", "mono-one/src/mono_one", "mono-two/src/mono_two"]
 branch = true
 
 [tool.coverage.report]

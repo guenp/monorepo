@@ -249,6 +249,9 @@ wheels = [
 name = "mono"
 source = { editable = "." }
 dependencies = [
+    { name = "mono-core" },
+    { name = "mono-one" },
+    { name = "mono-two" },
     { name = "typer" },
 ]
 
@@ -267,7 +270,12 @@ docs = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "typer", specifier = ">=0.15" }]
+requires-dist = [
+    { name = "mono-core", editable = "mono-core" },
+    { name = "mono-one", editable = "mono-one" },
+    { name = "mono-two", editable = "mono-two" },
+    { name = "typer", specifier = ">=0.15" },
+]
 
 [package.metadata.requires-dev]
 dev = [
@@ -282,6 +290,18 @@ docs = [
     { name = "markdown-gfm-admonition" },
     { name = "zensical" },
 ]
+
+[[package]]
+name = "mono-core"
+source = { editable = "mono-core" }
+
+[[package]]
+name = "mono-one"
+source = { editable = "mono-one" }
+
+[[package]]
+name = "mono-two"
+source = { editable = "mono-two" }
 
 [[package]]
 name = "mypy"
