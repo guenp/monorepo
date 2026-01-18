@@ -5,7 +5,7 @@
 site_name = "mono"
 site_description = "A minimal Python CLI template for building production-ready CLI tools"
 site_author = "Guen Prawiroatmodjo"
-site_url = "https://guenp.github.io/mono/"
+site_url = "https://guen.pw/monorepo/"
 copyright = "Copyright &copy; 2026 Guen Prawiroatmodjo"
 
 repo_url = "https://github.com/guenp/mono"

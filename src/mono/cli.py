@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import typer
-
 from mono_core import say_hello
 from mono_one import say_hi
 from mono_two import say_bye
