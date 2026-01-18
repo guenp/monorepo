@@ -9,7 +9,7 @@
 
 A minimal, production-ready template for Python CLI tools. Get started building your CLI in minutes with modern tooling, comprehensive testing, and CI/CD out of the box.
 
-## Features
+**Features**
 
 This template provides:
 
