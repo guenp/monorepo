@@ -1,0 +1,1 @@
+# mono - Python CLI Template
