@@ -1,3 +1,5 @@
+<img src="logo.svg" align="right" width="200" />
+
 # mono - Python CLI Template
 
 [![PyPI](https://img.shields.io/pypi/v/mono)](https://pypi.org/project/mono/)
