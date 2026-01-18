@@ -20,12 +20,18 @@ uv tool install mono
 Try it out:
 
 ```bash
-mono
+mono hello
 # Output: Hello, World!
 
-mono Alice
-# Output: Hello, Alice!
+mono hi Alice
+# Output: Hi, Alice!
+
+mono bye Bob
+# Output: Goodbye, Bob!
 ```
+
+> [!NOTE]
+> This example demonstrates the optional monorepo structure with three subpackages (`mono-core`, `mono-one`, `mono-two`). You can keep this structure or simplify to a single package.
 
 [Get Started →](getting-started.md){ .md-button .md-button--primary }
 [View Usage →](usage.md){ .md-button }
@@ -68,7 +74,31 @@ cd my-cli-tool
 
 ### 2. Customize the Package
 
-Replace `mono` with your package name using find-and-replace:
+**Choose your structure:**
+
+=== "Simple Package (Recommended)"
+
+    Remove the example subpackages:
+    ```bash
+    rm -rf mono-core mono-one mono-two
+    ```
+
+    Update `pyproject.toml` to remove subpackage dependencies:
+    ```toml
+    dependencies = [
+        "typer>=0.15",
+        # Remove: mono-core, mono-one, mono-two
+    ]
+    # Remove the [tool.uv.sources] section
+    ```
+
+=== "Monorepo Structure"
+
+    Keep the subpackages and customize them for your needs. Useful when you need to publish multiple packages separately.
+
+**Then, for either option:**
+
+Replace `mono` with your package name:
 
 ```bash
 # macOS
@@ -82,7 +112,9 @@ Rename directories:
 
 ```bash
 mv src/mono src/yourpackage
-mv tests/test_mono.py tests/test_yourpackage.py
+# If keeping subpackages:
+# mv mono-core yourpackage-core
+# mv mono-one yourpackage-one
 ```
 
 ### 3. Start Building
@@ -116,17 +148,50 @@ See the [Getting Started Guide](getting-started.md) for detailed instructions.
 
 ## Project Structure
 
-```
-.
-├── .github/workflows/    # CI/CD workflows
-├── docs/                 # Documentation source
-├── src/yourpackage/      # Your package code
-│   ├── __init__.py
-│   └── cli.py
-├── tests/                # Test files
-├── pyproject.toml        # Package metadata
-└── zensical.toml         # Docs configuration
-```
+This template supports two project structures:
+
+=== "Simple Package (Default)"
+
+    ```
+    .
+    ├── .github/workflows/    # CI/CD workflows
+    ├── docs/                 # Documentation source
+    ├── src/yourpackage/      # Your package code
+    │   ├── __init__.py
+    │   └── cli.py
+    ├── tests/                # Test files
+    ├── pyproject.toml        # Package metadata
+    └── zensical.toml         # Docs configuration
+    ```
+
+=== "Monorepo (Optional)"
+
+    ```
+    .
+    ├── .github/workflows/
+    ├── docs/
+    ├── yourpackage-core/          # Separate subpackage
+    │   ├── pyproject.toml
+    │   ├── README.md
+    │   └── src/yourpackage_core/
+    ├── yourpackage-one/           # Another subpackage
+    │   ├── pyproject.toml
+    │   ├── README.md
+    │   └── src/yourpackage_one/
+    ├── src/yourpackage/           # Main CLI package
+    │   ├── __init__.py
+    │   └── cli.py
+    ├── tests/
+    ├── pyproject.toml             # Main project config
+    └── zensical.toml
+    ```
+
+**When to use the monorepo structure:**
+
+- You need to publish multiple packages separately to PyPI
+- Different parts have different dependencies
+- You want independent versioning for subpackages
+- You're building a plugin ecosystem or modular toolkit
 
 ## License
 
