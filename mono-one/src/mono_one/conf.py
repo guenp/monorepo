@@ -9,9 +9,11 @@ from batconf.sources.env import EnvConfig
 from batconf.sources.ini import IniConfig
 
 
-# Get the absolute path to the test config.yaml file
-_project_dir = path.dirname(path.realpath(__file__))
-CONFIG_FILE_NAME = path.join(_project_dir, '../config.ini')
+# Get the absolute path to the test config file relative to this file
+#_project_dir = path.dirname(path.realpath(__file__))
+#CONFIG_FILE_NAME = path.join(_project_dir, '../config.ini')
+# get config.ini from the current working directory
+CONFIG_FILE_NAME = 'config.ini'
 
 
 @dataclass

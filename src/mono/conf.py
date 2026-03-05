@@ -38,9 +38,10 @@ based on OS standards useful.
 """
 
 # Get the absolute path to the test config.yaml file
-_project_dir = path.dirname(path.realpath(__file__))
-CONFIG_FILE_NAME = path.join(_project_dir, '../config.ini')
-
+#_project_dir = path.dirname(path.realpath(__file__))
+#CONFIG_FILE_NAME = path.join(_project_dir, '../config.ini')
+# get config file from current working directory
+CONFIG_FILE_NAME = 'config.ini'
 
 def get_config(
     config_class: ConfigProtocol | Any = MonoConfigSchema,
