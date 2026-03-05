@@ -15,6 +15,7 @@ from batconf.sources.ini import IniConfig
 # === Configuration Schema === #
 from dataclasses import dataclass
 from mono_core.database import DatabaseClient
+from mono_one.conf import MonoOneConfigSchema
 
 
 @dataclass
@@ -22,7 +23,7 @@ class MonoConfigSchema:
     name: str
     databaseA: DatabaseClient.Config
     databaseB: DatabaseClient.Config
-
+    mono_one: MonoOneConfigSchema
 
 """
 Use of a default configuration file location bears some careful consideration
